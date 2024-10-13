@@ -1,0 +1,38 @@
+/* imports */
+@import url("ShyFox/shy-variables.css");
+@import url("ShyFox/shy-global.css");
+@import url("ShyFox/shy-sidebar.css");
+@import url("ShyFox/shy-toolbar.css");
+@import url("ShyFox/shy-navbar.css");
+@import url("ShyFox/shy-findbar.css");
+@import url("ShyFox/shy-controls.css");
+@import url("ShyFox/shy-compact.css");
+@import url("ShyFox/shy-icons.css");
+@import url("ShyFox/shy-floating-search.css");
+
+/* Overwrites */
+
+:root,
+#screenshots-component * {
+    --navbar-wdt: 60em;
+    --findbar-wdt: 50em !important; /* Important to override adaptive size in shy-findbar.css */
+    --sdbr-wdt: 20em;
+}
+
+/* Hide navigation buttons */
+:is(#back-button,#forward-button),
+#reload-button{
+  margin-inline-start: -34px !important;
+  /* visibility:hidden; */
+  display: none;
+  transition: margin 66ms linear !important
+}
+
+#sidebar-box {
+  top: -0.2rem;
+}
+
+/* Transparent new tab (Blank Page) */
+/* :root { --tabpanel-background-color: #00000000 !important; }
+.browserSidebarContainer, .responsive-mode {background-color: none !important;}
+#appcontent .browserStack, #browser, .browserContainer {background: none;} */
