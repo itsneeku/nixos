@@ -8,11 +8,11 @@
 
   home.file.".config/waybar/config".source =
     config.lib.file.mkOutOfStoreSymlink
-    /home/neeku/.nixos/modules/home/hyprland/waybar/config;
+    /home/neeku/.nixos/modules/home-manager/hyprland/waybar/config;
 
   home.file.".config/waybar/style.css".source =
     config.lib.file.mkOutOfStoreSymlink
-    /home/neeku/.nixos/modules/home/hyprland/waybar/style.css;
+    /home/neeku/.nixos/modules/home-manager/hyprland/waybar/style.css;
 
   # home.file.".config/hypr/hyprland.conf".source =
   #   config.lib.file.mkOutOfStoreSymlink
@@ -26,7 +26,7 @@
       # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
       # pkgs.hyprlandPlugins.borders-plus-plus
     ];
-    settings.source = "${config.home.homeDirectory}/.nixos/modules/home/hyprland/hyprland.conf";
+    settings.source = "${config.home.homeDirectory}/.nixos/modules/home-manager/hyprland/hyprland.conf";
   };
 
   services.hypridle = {
