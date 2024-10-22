@@ -4,14 +4,11 @@
   config,
   ...
 }: {
-  programs.kitty = {
+  home-manager.users.${config.user}.programs.kitty = {
     enable = true;
     font.name = "CaskaydiaCove Nerd Font";
+    theme = "Catppuccin-Mocha";
 
-    # home.file.".config/kitty/kitty.conf".source =
-    #   config.lib.file.mkOutOfStoreSymlink
-    #   /home/neeku/.nixos/modules/home/kitty.conf;
-    # theme = "Catppuccin-Mocha";
     settings = {
       shell = "nu";
       touch_scroll_multiplier = 8;
@@ -19,7 +16,7 @@
       confirm_os_window_close = 0;
       # background_opacity = "0.8";
       window_margin_width = 10;
-      include = "theme.conf";
+      # include = "theme.conf";
     };
     keybindings = {"ctrl+backspace" = "send_text all \\x17";};
   };

@@ -13,11 +13,11 @@
     createSymlink = mkOption {
       type = types.submodule;
     };
+    hm = mkOption {
+      type = types.attrsOf types.anything;
+    };
   };
 
   config.host = host;
   config.user = "neeku";
-
-  config.createSymlink = localPath:
-    config.lib.file.mkOutOfStoreSymlink "home/${config.user}/.nixos/modules/${localPath}";
 }

@@ -18,6 +18,8 @@
       nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          inputs.catppuccin.nixosModules.catppuccin
+          inputs.home-manager.nixosModules.home-manager
           ./overlays
           (import ./lib.nix {inherit host;})
           module

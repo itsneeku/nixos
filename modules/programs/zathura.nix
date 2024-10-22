@@ -87,53 +87,55 @@
     set highlight-active-color	  rgba(245,194,231,0.5)
   '';
 in {
-  programs.zathura = {
-    enable = true;
-    options = {
-      guioptions = "none";
-      recolor-keephue = true;
-      selection-clipboard = "clipboard";
-      selection-notification = false;
-      zoom-center = true;
-    };
-    extraConfig = catppuccin-mocha;
-  };
-
-  xdg.dataFile."scripts/zathura-wrapper.sh".source = pkgs.writeScript "zathura-wrapper" ''
-    #!/bin/sh
-    zathura "$1" & disown
-  '';
-
-  xdg.desktopEntries = {
-    "org.pwmt.zathura-pdf-mupdf" = {
-      name = "Zathura";
-      type = "Application";
-      comment = "zathura :)";
-      exec = "/home/neeku/.local/share/scripts/zathura-wrapper.sh %U";
-      # keywords = ["vscode"];
-      terminal = false;
-      noDisplay = true;
-      categories = ["Office" "Viewer"];
-      mimeType = [
-        "application/pdf"
-        "application/epub+zip"
-        "application/oxps"
-        "application/x-fictionbook"
-      ];
+  home-manager.users.${config.user} = {
+    programs.zathura = {
+      enable = true;
+      options = {
+        guioptions = "none";
+        recolor-keephue = true;
+        selection-clipboard = "clipboard";
+        selection-notification = false;
+        zoom-center = true;
+      };
+      extraConfig = catppuccin-mocha;
     };
 
-    "org.pwmt.zathura" = {
-      name = "Zathura";
-      type = "Application";
-      comment = "Zathura :)";
-      exec = ''sh -c "zathura %U & disown"'';
-      # keywords = ["vscode"];
-      terminal = false;
-      icon = "org.pwmt.zathura";
-      noDisplay = true;
-      mimeType = ["application/pdf" "application/epub"];
-      categories = ["Office" "Viewer"];
-      startupNotify = true;
+    xdg.dataFile."scripts/zathura-wrapper.sh".source = pkgs.writeScript "zathura-wrapper" ''
+      #!/bin/sh
+      zathura "$1" & disown
+    '';
+
+    xdg.desktopEntries = {
+      "org.pwmt.zathura-pdf-mupdf" = {
+        name = "Zathura";
+        type = "Application";
+        comment = "zathura :)";
+        exec = "/home/neeku/.local/share/scripts/zathura-wrapper.sh %U";
+        # keywords = ["vscode"];
+        terminal = false;
+        noDisplay = true;
+        categories = ["Office" "Viewer"];
+        mimeType = [
+          "application/pdf"
+          "application/epub+zip"
+          "application/oxps"
+          "application/x-fictionbook"
+        ];
+      };
+
+      "org.pwmt.zathura" = {
+        name = "Zathura";
+        type = "Application";
+        comment = "Zathura :)";
+        exec = ''sh -c "zathura %U & disown"'';
+        # keywords = ["vscode"];
+        terminal = false;
+        icon = "org.pwmt.zathura";
+        noDisplay = true;
+        mimeType = ["application/pdf" "application/epub"];
+        categories = ["Office" "Viewer"];
+        startupNotify = true;
+      };
     };
   };
 }

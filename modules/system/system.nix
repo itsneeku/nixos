@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  inputs,
-  nixpkgs,
-  ...
-}: {
+{...}: {
   nix = {
     settings = {
       auto-optimise-store = true;

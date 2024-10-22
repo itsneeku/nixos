@@ -14,13 +14,17 @@
         ignore_dbus_inhibit = false;
       };
 
+      #TODO: move shell calls into lib.nix with an alias based on home.shell val
       listener = [
         {
           # 2 min -> decrease monitor brightness
           timeout = 120;
-          # /etc/profiles/per-user/neeku/bin/nu -c 'ddcutil getvcp 10 -t | awk {print $4} o> /tmp/hypridle_ddcutil; ddcutil setvcp 10 1'
-          on-timeout = "${pkgs.nushell}/bin/nu -c 'ddcutil getvcp 10 -t | split column \" \" | get column4 | save -f /tmp/hypridle_ddcutil; ddcutil setvcp 10 1'";
-          on-resume = "${pkgs.nushell}/bin/nu -c 'ddcutil setvcp 10 (open /tmp/hypridle_ddcutil)'";
+          on-timeout =
+            # Save current brightness level to a file
+            "${pkgs.nushell}/bin/nu -c 'ddcutil getvcp 10 -t | split column \" \" | get column4 | save -f /tmp/hypridle_ddcutil; ddcutil setvcp 10 1'";
+          on-resume =
+            # Restore brightness level from the file
+            "${pkgs.nushell}/bin/nu -c 'ddcutil setvcp 10 (open /tmp/hypridle_ddcutil)'";
         }
         {
           # 2 min -> decrease laptop brightness

@@ -22,7 +22,6 @@ in {
     ];
     wayland.windowManager.hyprland = {
       enable = true;
-      # settings.source = "${config.home.homeDirectory}/.nixos/modules/home-manager/hyprland/hyprland.conf";
       settings.source = toString ./hyprland/hyprland.conf;
     };
 

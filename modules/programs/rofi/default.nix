@@ -1,5 +1,10 @@
-{ lib, pkgs, ... }: {
-  programs.rofi = {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
+  home-manager.users.${config.user}.programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
     terminal = "${pkgs.kitty}/bin/kitty";

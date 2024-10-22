@@ -1,14 +1,12 @@
 {
   config,
   pkgs,
+  inputs,
+  lib,
   ...
-}: {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./home.nix
-    ]
-    ++ (map (name: ../../modules/system + "/${name}.nix") [
+}: let
+  modules = {
+    system = [
       "bluetooth"
       "catppuccin"
       "dualboot"
@@ -20,15 +18,40 @@
       "sddm"
       "sound"
       "system"
-    ])
-    ++ (map (name: ../../modules/programs + "/${name}.nix") [
+    ];
+
+    programs = [
       "hyprland"
       "hypridle"
       "hyprlock"
       "nh"
+      "git"
       "swaync"
       "waybar"
-    ]);
+      "kitty"
+      "rofi/default"
+      "gtk"
+      "nushell"
+      "packages"
+      "vscode"
+      "zathura"
+    ];
+  };
+
+  mapModulesByType = modules:
+    lib.flatten (lib.mapAttrsToList (
+        type: modulesList:
+          map (module: ../../modules + "/${type}/${module}.nix") modulesList
+      )
+      modules);
+in {
+  imports =
+    [
+      ./hardware-configuration.nix
+      ./home.nix
+    ]
+    ++ mapModulesByType modules;
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services = {

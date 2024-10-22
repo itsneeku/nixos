@@ -1,9 +1,10 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }: {
-  programs.git = {
+  home-manager.users.${config.user}.programs.git = {
     enable = true;
 
     userName = "Nicolae Rusu";
