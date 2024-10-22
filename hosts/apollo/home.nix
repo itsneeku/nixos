@@ -1,23 +1,40 @@
 {
   pkgs,
   inputs,
-  user,
+  config,
   ...
 }: {
-  imports = [inputs.home-manager.nixosModules.home-manager];
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    inputs.catppuccin.nixosModules.catppuccin
+  ];
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    extraSpecialArgs = {inherit inputs;};
-    backupFileExtension = ".backup";
-    users.${user} = {
-      imports = [../../modules/home-manager];
+    extraSpecialArgs = {
+      inherit inputs;
+    };
+    backupFileExtension = "old";
+    users.${config.user} = {
+      imports = map (name: ../../modules/programs + "/${name}.nix") [
+        "firefox/default"
+        "rofi/default"
+        "git"
+        "gtk"
+        "kanshi"
+        "kitty"
+        "nushell"
+        "packages"
+        "vscode"
+        "zathura"
+      ];
       home = {
-        homeDirectory = "/home/${user}";
-        username = user;
+        homeDirectory = "/home/${config.user}";
+        username = config.user;
         sessionVariables = {
           NIXOS_OZONE_WL = "1";
           EDITOR = "code";
+          NIXPKGS_ALLOW_UNFREE = "1";
         };
         stateVersion = "24.05";
       };
@@ -26,11 +43,9 @@
     };
   };
 
-  users.users.${user} = {
+  users.users.${config.user} = {
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel" "i2c"];
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
   };
-
-  programs.fish.enable = true;
 }
