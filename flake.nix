@@ -31,6 +31,6 @@
       sputnik = ./hosts/sputnik;
     };
 
-    templates = import ./templates;
+    templates = ./templates;
   };
 }
