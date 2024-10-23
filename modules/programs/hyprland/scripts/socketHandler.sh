@@ -26,7 +26,6 @@ handle() {
             for workspace in $(hyprctl workspaces -j | jq -r '.[].id'); do
                 hyprctl dispatch moveworkspacetomonitor "$workspace $(awk -F ',' '{print $1}' <<<"$data")"
             done
-            hyprctl keyword workspace 3, gapsout:20 600 20 600
         fi
         ;;
 
