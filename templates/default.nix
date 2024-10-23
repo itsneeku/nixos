@@ -1,4 +1,4 @@
 {
-  # nix flake init -t ($env.FLAKE)#c
+  # nix flake init -t $"($env.FLAKE)#c"
   c.path = ./c;
 }

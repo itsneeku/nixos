@@ -30,7 +30,6 @@
       apollo = ./hosts/apollo;
       sputnik = ./hosts/sputnik;
     };
-
-    templates = ./templates;
+    templates = import ./templates;
   };
 }
