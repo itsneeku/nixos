@@ -5,7 +5,8 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   laptop-lid = pkgs.writeShellScript "laptop-lid" ''
     lock=$HOME/fingerprint-reader-disabled
 
@@ -22,8 +23,9 @@
       rm "$lock"
     fi
   '';
-in {
-  disabledModules = ["security/pam.nix"];
+in
+{
+  disabledModules = [ "security/pam.nix" ];
   options.services.fprintd.max-tries = lib.mkOption {
     type = lib.types.int;
     default = 3;
@@ -38,7 +40,7 @@ in {
     }
   ];
 
-  imports = [./pam.nix];
+  imports = [ ./pam.nix ];
   config = {
     services.fprintd.enable = true;
     services.fprintd.max-tries = 99;
@@ -49,9 +51,14 @@ in {
     systemd.services.fingerprint-laptop-lid = {
       enable = true;
       description = "Disable fingerprint reader when laptop lid closes";
-      serviceConfig = {ExecStart = laptop-lid;};
-      wantedBy = ["multi-user.target" "suspend.target"];
-      after = ["suspend.target"];
+      serviceConfig = {
+        ExecStart = laptop-lid;
+      };
+      wantedBy = [
+        "multi-user.target"
+        "suspend.target"
+      ];
+      after = [ "suspend.target" ];
     };
   };
 }

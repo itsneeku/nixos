@@ -4,7 +4,8 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   catppuccin-latte = ''
     set default-fg                rgba(76,79,105,1)
     set default-bg 			          rgba(239,241,245,1)
@@ -86,7 +87,8 @@
     set highlight-fg              rgba(245,194,231,0.5)
     set highlight-active-color	  rgba(245,194,231,0.5)
   '';
-in {
+in
+{
   home-manager.users.${config.user} = {
     programs.zathura = {
       enable = true;
@@ -114,7 +116,10 @@ in {
         # keywords = ["vscode"];
         terminal = false;
         noDisplay = true;
-        categories = ["Office" "Viewer"];
+        categories = [
+          "Office"
+          "Viewer"
+        ];
         mimeType = [
           "application/pdf"
           "application/epub+zip"
@@ -132,8 +137,14 @@ in {
         terminal = false;
         icon = "org.pwmt.zathura";
         noDisplay = true;
-        mimeType = ["application/pdf" "application/epub"];
-        categories = ["Office" "Viewer"];
+        mimeType = [
+          "application/pdf"
+          "application/epub"
+        ];
+        categories = [
+          "Office"
+          "Viewer"
+        ];
         startupNotify = true;
       };
     };

@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   services.displayManager = {
     autoLogin = {
       enable = true;
@@ -18,7 +19,7 @@
 
   environment.systemPackages = with pkgs; [
     (where-is-my-sddm-theme.override {
-      variants = ["qt5"];
+      variants = [ "qt5" ];
     })
   ];
 }

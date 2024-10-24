@@ -4,7 +4,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
@@ -32,6 +33,9 @@
 
   users.users.${config.user} = {
     isNormalUser = true;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 }

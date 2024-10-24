@@ -1,4 +1,11 @@
-{ config, lib, inputs, pkgs, ... }: {
+{
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
+{
   services.kanshi = {
     enable = true;
     # package = pkgs.vscode.fhs;

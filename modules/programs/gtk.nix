@@ -4,14 +4,16 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   cursor = "Bibata-Modern-Classic";
   cursorPackage = pkgs.bibata-cursors;
   cursorSize = 32;
-in {
+in
+{
   home-manager.users.${config.user} = {
     gtk.enable = true;
-    home.packages = [pkgs.font-manager];
+    home.packages = [ pkgs.font-manager ];
 
     # Font
     gtk.font = {
@@ -20,7 +22,7 @@ in {
     };
 
     # Theme
-    imports = [inputs.catppuccin.homeManagerModules.catppuccin];
+    imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
     catppuccin.flavor = "mocha";
     gtk.catppuccin.enable = true;
 
@@ -49,10 +51,8 @@ in {
 
     systemd.user.services.setCursor = {
       Unit.Description = "Set hyprcursor";
-      Install.WantedBy = ["graphical-session.target"];
-      Service.ExecStart = "/run/current-system/sw/bin/bash -c 'hyprctl setcursor HyprBibataModernClassicSVG ${
-        toString cursorSize
-      }'";
+      Install.WantedBy = [ "graphical-session.target" ];
+      Service.ExecStart = "/run/current-system/sw/bin/bash -c 'hyprctl setcursor HyprBibataModernClassicSVG ${toString cursorSize}'";
     };
   };
 }

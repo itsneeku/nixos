@@ -4,17 +4,23 @@
   lib,
   config,
   ...
-}: let
-  requiredDeps = with pkgs; [
-  ];
+}:
+let
+  requiredDeps =
+    with pkgs;
+    [
+    ];
 
-  guiDeps = with pkgs; [
-  ];
+  guiDeps =
+    with pkgs;
+    [
+    ];
 
   dependencies = requiredDeps ++ guiDeps;
 
   cfg = config.programs.ags;
-in {
+in
+{
   imports = [
     inputs.ags.homeManagerModules.default
   ];
@@ -30,8 +36,7 @@ in {
   # };
 
   home.file.".config/ags/" = {
-    source =
-      config.lib.file.mkOutOfStoreSymlink /home/neeku/.nixos/modules/home-manager/ags;
+    source = config.lib.file.mkOutOfStoreSymlink /home/neeku/.nixos/modules/home-manager/ags;
     recursive = true;
   };
 

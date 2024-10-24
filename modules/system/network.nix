@@ -2,11 +2,12 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   networking = {
     hostName = config.host;
     networkmanager.enable = true;
-    nameservers = ["1.1.1.1"];
+    nameservers = [ "1.1.1.1" ];
   };
 
   services.sunshine = {
@@ -27,7 +28,12 @@
   services.avahi.publish.userServices = true;
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [47984 47989 47990 48010];
+    allowedTCPPorts = [
+      47984
+      47989
+      47990
+      48010
+    ];
     allowedUDPPortRanges = [
       {
         from = 47998;

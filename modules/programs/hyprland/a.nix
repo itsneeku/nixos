@@ -3,16 +3,13 @@
   config,
   inputs,
   ...
-}: {
-  imports = [inputs.hyprland.homeManagerModules.default];
+}:
+{
+  imports = [ inputs.hyprland.homeManagerModules.default ];
 
-  home.file.".config/waybar/config".source =
-    config.lib.file.mkOutOfStoreSymlink
-    /home/neeku/.nixos/modules/home-manager/hyprland/waybar/config;
+  home.file.".config/waybar/config".source = config.lib.file.mkOutOfStoreSymlink /home/neeku/.nixos/modules/home-manager/hyprland/waybar/config;
 
-  home.file.".config/waybar/style.css".source =
-    config.lib.file.mkOutOfStoreSymlink
-    /home/neeku/.nixos/modules/home-manager/hyprland/waybar/style.css;
+  home.file.".config/waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink /home/neeku/.nixos/modules/home-manager/hyprland/waybar/style.css;
 
   # https://wiki.hyprland.org/Hypr-Ecosystem/xdg-desktop-portal-hyprland/#configuration
   home.file.".config/hypr/xdph.conf".text = ''
@@ -94,8 +91,7 @@
         check_color = "rgba(0, 0, 0, 0)";
         fail_color = "rgba(255, 0, 0, 0)"; # if authentication failed, changes outer_color and fail message color
         fail_text = ""; # can be set to empty
-        fail_transition =
-          300; # transition time in ms between normal outer_color and fail_color
+        fail_transition = 300; # transition time in ms between normal outer_color and fail_color
 
         position = "0, 0";
         halign = "center";
@@ -104,5 +100,4 @@
     };
   };
 
-  
 }

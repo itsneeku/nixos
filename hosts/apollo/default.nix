@@ -4,7 +4,8 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   modules = {
     system = [
       "bluetooth"
@@ -38,19 +39,19 @@
     ];
   };
 
-  mapModulesByType = modules:
-    lib.flatten (lib.mapAttrsToList (
-        type: modulesList:
-          map (module: ../../modules + "/${type}/${module}.nix") modulesList
-      )
-      modules);
-in {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./home.nix
-    ]
-    ++ mapModulesByType modules;
+  mapModulesByType =
+    modules:
+    lib.flatten (
+      lib.mapAttrsToList (
+        type: modulesList: map (module: ../../modules + "/${type}/${module}.nix") modulesList
+      ) modules
+    );
+in
+{
+  imports = [
+    ./hardware-configuration.nix
+    ./home.nix
+  ] ++ mapModulesByType modules;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

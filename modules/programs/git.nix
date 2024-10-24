@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   home-manager.users.${config.user}.programs.git = {
     enable = true;
 

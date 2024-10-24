@@ -1,5 +1,10 @@
 # ./overlays/default.nix
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   nixpkgs.overlays = [

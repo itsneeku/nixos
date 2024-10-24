@@ -4,9 +4,10 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   home-manager.users.${config.user} = {
-    home.packages = with pkgs; [nodePackages.prettier];
+    home.packages = with pkgs; [ nodePackages.prettier ];
     programs.vscode = {
       enable = true;
       package = pkgs.vscode.fhs;

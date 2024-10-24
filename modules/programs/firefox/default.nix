@@ -4,7 +4,8 @@
   config,
   inputs,
   ...
-}: let
+}:
+let
   firefox-devedition-autoconfig =
     (pkgs.firefox-devedition.overrideAttrs (oldAttrs: {
       buildCommand =
@@ -12,15 +13,15 @@
         + ''
           echo 'pref("general.config.sandbox_enabled", false);' >> $out/lib/firefox/defaults/pref/autoconfig.js
         '';
-    }))
-    .override
-    {
-      extraPrefs = ''
-        ${builtins.readFile ./userChrome.js}
-        ${builtins.readFile ./user-chome-js-loader.js}
-      '';
-    };
-in {
+    })).override
+      {
+        extraPrefs = ''
+          ${builtins.readFile ./userChrome.js}
+          ${builtins.readFile ./user-chome-js-loader.js}
+        '';
+      };
+in
+{
   programs.firefox = {
     enable = true;
     package = firefox-devedition-autoconfig;

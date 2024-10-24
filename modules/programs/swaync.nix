@@ -1,3 +1,6 @@
-{config, ...}: {
-  home-manager.users.${config.user}.services.swaync = {enable = true;};
+{ config, ... }:
+{
+  home-manager.users.${config.user}.services.swaync = {
+    enable = true;
+  };
 }

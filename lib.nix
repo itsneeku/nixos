@@ -1,8 +1,10 @@
-{host, ...}: {
+{ host, ... }:
+{
   config,
   lib,
   ...
-}: {
+}:
+{
   options = with lib; {
     host = mkOption {
       type = types.str;

@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   home-manager.users.${config.user}.services.hypridle = {
     enable = true;
     settings = {

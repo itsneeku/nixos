@@ -2,12 +2,13 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
       (nerdfonts.override {
-        fonts = ["CascadiaCode"];
+        fonts = [ "CascadiaCode" ];
       })
       noto-fonts-emoji
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd

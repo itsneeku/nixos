@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   home-manager.users.${config.user}.programs.hyprlock = {
     enable = true;
 
@@ -31,7 +32,7 @@
         fail_color = "rgba(255, 0, 0, 0)"; # if authentication failed, changes outer_color and fail message color
         fail_text = ""; # can be set to empty
         fail_transition = 300; # transition time in ms between normal outer_color and fail_color
-        
+
         position = "0, 0";
         halign = "center";
         valign = "center";

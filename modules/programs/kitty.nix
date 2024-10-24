@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   home-manager.users.${config.user}.programs.kitty = {
     enable = true;
     font.name = "CaskaydiaCove Nerd Font";
@@ -18,6 +19,8 @@
       window_margin_width = 10;
       # include = "theme.conf";
     };
-    keybindings = {"ctrl+backspace" = "send_text all \\x17";};
+    keybindings = {
+      "ctrl+backspace" = "send_text all \\x17";
+    };
   };
 }

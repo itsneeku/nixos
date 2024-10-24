@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   programs.fish = {
     # catppuccin.enable = true;
     # catppuccin.flavor = "mocha";
