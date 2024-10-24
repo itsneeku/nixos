@@ -9,10 +9,6 @@ searchSource() {
 onLidClose() {
     if getMonitorProps AW3423DWF; then
         disableMonitor eDP-1
-        gapsOut=$(hyprctl getoption general:gaps_out -j | jq -r '.custom')
-        gapsTop=$(echo $gapsOut | awk '{print $1}')
-        gapsBottom=$(echo $gapsOut | awk '{print $3}')
-        hyprctl keyword workspace 3, gapsout:$gapsTop 500 $gapsBottom 500
     else
         pidof hyprlock || hyprlock
     fi

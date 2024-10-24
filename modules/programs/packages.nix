@@ -4,7 +4,8 @@
   inputs,
   config,
   ...
-}: {
+}:
+{
   home-manager.users.${config.user} = {
     # without home-manager options
     home.packages = with pkgs; [
@@ -44,21 +45,19 @@
       ffmpeg-full
       bc
       appimage-run
-      alejandra
       unityhub
       inputs.zen-browser.packages."${system}".specific
       eslint
       anytype
       # libreoffice-qt6
-      nixfmt-rfc-style
     ];
 
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/octet-stream" = ["code.desktop"];
-        "text/plain" = ["code.desktop"];
-        "application/zip" = ["org.gnome.Nautilus.desktop"];
+        "application/octet-stream" = [ "code.desktop" ];
+        "text/plain" = [ "code.desktop" ];
+        "application/zip" = [ "org.gnome.Nautilus.desktop" ];
       };
     };
 
@@ -82,7 +81,7 @@
       enable = true;
       silent = true;
       nix-direnv.enable = true;
-      config.whitelist.prefix = ["~/Documents/Code"]; # Very Unsafe :)
+      config.whitelist.prefix = [ "~/Documents/Code" ]; # Very Unsafe :)
     };
     programs.btop = {
       enable = true;

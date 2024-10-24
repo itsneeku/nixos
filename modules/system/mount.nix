@@ -15,9 +15,4 @@
 
   # Android MTP
   services.gvfs.enable = true;
-
-  programs.kdeconnect = {
-    enable = true;
-    package = pkgs.valent;
-  };
 }

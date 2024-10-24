@@ -10,7 +10,7 @@ handle() {
 
         # If removed monitor is external
         if [[ $portID == "DP-"* ]]; then
-            hyprctl keyword workspace 3, gapsout:$(hyprctl getoption general:gaps_out -j | jq -r '.custom')
+            # hyprctl keyword workspace 3, gapsout:$(hyprctl getoption general:gaps_out -j | jq -r '.custom')
             enableMonitor eDP-1
         fi
         ;;
@@ -51,11 +51,11 @@ handle() {
         # If workspace is on external monitor and has < 3 windows and has small gaps
         portID=$(hyprctl workspaces -j | jq -r '.[] | select(.name == "obsidian") | .monitor')
         windowsCount=$(hyprctl workspaces -j | jq -r '.[] | select(.name == "obsidian") | .windows')
-        if [[ $portID == "DP-"* && $windowsCount < 3 ]]; then
-            hyprctl keyword workspace 3, gapsout:20 600 20 600
-        else
-            hyprctl keyword workspace 3, gapsout:$(hyprctl getoption general:gaps_out -j | jq -r '.custom')
-        fi
+        # if [[ $portID == "DP-"* && $windowsCount < 3 ]]; then
+        #     hyprctl keyword workspace 3, gapsout:20 600 20 600
+        # else
+        #     hyprctl keyword workspace 3, gapsout:$(hyprctl getoption general:gaps_out -j | jq -r '.custom')
+        # fi
 
         #         gapsOut=$(hyprctl workspacerules -j | jq -r ' .[] | select(.workspaceString == "3" and .monitor == "desc:Dell Inc. AW3423DWF 50H82S3") | .gapsOut')
         # windowsCount=$(hyprctl workspaces -j | jq -r '.[] | select(.name == "obsidian") | .windows')

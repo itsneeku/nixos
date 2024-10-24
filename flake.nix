@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/Hyprland";
@@ -13,23 +13,30 @@
     zen-browser.url = "github:ch4og/zen-browser-flake";
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
-    mkConfig = host: module:
-      nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          inputs.catppuccin.nixosModules.catppuccin
-          inputs.home-manager.nixosModules.home-manager
-          ./overlays
-          (import ./lib.nix {inherit host;})
-          module
-        ];
+  outputs =
+    { nixpkgs, ... }@inputs:
+    let
+      mkConfig =
+        host: module:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+          };
+          modules = [
+            inputs.catppuccin.nixosModules.catppuccin
+            inputs.home-manager.nixosModules.home-manager
+            ./overlays
+            (import ./lib.nix { inherit host; })
+            module
+          ];
+        };
+    in
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt; # TODO: Generalize?
+      nixosConfigurations = builtins.mapAttrs mkConfig {
+        apollo = ./hosts/apollo;
+        sputnik = ./hosts/sputnik;
       };
-  in {
-    nixosConfigurations = builtins.mapAttrs mkConfig {
-      apollo = ./hosts/apollo;
-      sputnik = ./hosts/sputnik;
+      templates = import ./templates;
     };
-    templates = import ./templates;
-  };
 }
