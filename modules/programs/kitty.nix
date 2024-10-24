@@ -2,10 +2,11 @@
   lib,
   pkgs,
   config,
+  user,
   ...
 }:
 {
-  home-manager.users.${config.user}.programs.kitty = {
+  home-manager.users.${user}.programs.kitty = {
     enable = true;
     font.name = "CaskaydiaCove Nerd Font";
     theme = "Catppuccin-Mocha";

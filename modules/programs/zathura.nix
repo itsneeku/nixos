@@ -3,6 +3,7 @@
   lib,
   inputs,
   pkgs,
+  user,
   ...
 }:
 let
@@ -89,7 +90,7 @@ let
   '';
 in
 {
-  home-manager.users.${config.user} = {
+  home-manager.users.${user} = {
     programs.zathura = {
       enable = true;
       options = {

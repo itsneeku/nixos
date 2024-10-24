@@ -1,13 +1,14 @@
 {
   pkgs,
   config,
+  user,
   ...
 }:
 {
   services.displayManager = {
     autoLogin = {
       enable = true;
-      user = config.user;
+      user = user;
     };
     sddm = {
       enable = true;

@@ -3,10 +3,11 @@
   lib,
   inputs,
   pkgs,
+  user,
   ...
 }:
 {
-  home-manager.users.${config.user} = {
+  home-manager.users.${user} = {
     home.packages = with pkgs; [ nodePackages.prettier ];
     programs.vscode = {
       enable = true;

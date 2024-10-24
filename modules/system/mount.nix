@@ -1,5 +1,6 @@
 {
   pkgs,
+  user,
   config,
   ...
 }:
@@ -9,7 +10,7 @@
   services.udisks2.enable = true;
 
   # Auto Mount using udisks2
-  home-manager.users.${config.user}.services.udiskie = {
+  home-manager.users.${user}.services.udiskie = {
     enable = true;
     tray = "never";
   };

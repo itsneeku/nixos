@@ -1,6 +1,6 @@
-{ config, ... }:
+{ config, user, ... }:
 {
-  home-manager.users.${config.user} =
+  home-manager.users.${user} =
     {
       config,
       pkgs,

@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  user,
   config,
   ...
 }:
@@ -18,7 +19,7 @@ in
     portalPackage = hyprlandPkgs.xdg-desktop-portal-hyprland;
   };
 
-  home-manager.users.${config.user} = {
+  home-manager.users.${user} = {
     imports = [
       inputs.hyprland.homeManagerModules.default
     ];

@@ -1,11 +1,12 @@
 {
   config,
   pkgs,
+  host,
   ...
 }:
 {
   networking = {
-    hostName = config.host;
+    hostName = host;
     networkmanager.enable = true;
     nameservers = [ "1.1.1.1" ];
   };

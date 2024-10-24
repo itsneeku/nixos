@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  user,
   ...
 }:
 {
@@ -15,5 +16,5 @@
   services.udev.extraRules = ''
     KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
   '';
-  users.users.${config.user}.extraGroups = [ "i2c" ];
+  users.users.${user}.extraGroups = [ "i2c" ];
 }

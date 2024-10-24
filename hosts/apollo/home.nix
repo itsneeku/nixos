@@ -1,8 +1,6 @@
 {
-  pkgs,
   inputs,
-  config,
-  lib,
+  user,
   ...
 }:
 {
@@ -15,10 +13,10 @@
       inherit inputs;
     };
 
-    users.${config.user} = {
+    users.${user} = {
       home = {
-        homeDirectory = "/home/${config.user}";
-        username = config.user;
+        homeDirectory = "/home/${user}";
+        username = user;
         sessionVariables = {
           NIXOS_OZONE_WL = "1";
           EDITOR = "code";
@@ -31,7 +29,7 @@
     };
   };
 
-  users.users.${config.user} = {
+  users.users.${user} = {
     isNormalUser = true;
     extraGroups = [
       "networkmanager"

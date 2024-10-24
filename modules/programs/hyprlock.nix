@@ -1,6 +1,10 @@
-{ config, ... }:
 {
-  home-manager.users.${config.user}.programs.hyprlock = {
+  config,
+  user,
+  ...
+}:
+{
+  home-manager.users.${user}.programs.hyprlock = {
     enable = true;
 
     settings = {

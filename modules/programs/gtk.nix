@@ -3,6 +3,7 @@
   pkgs,
   config,
   inputs,
+  user,
   ...
 }:
 let
@@ -11,7 +12,7 @@ let
   cursorSize = 32;
 in
 {
-  home-manager.users.${config.user} = {
+  home-manager.users.${user} = {
     gtk.enable = true;
     home.packages = [ pkgs.font-manager ];
 

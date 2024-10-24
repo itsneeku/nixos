@@ -1,13 +1,14 @@
 {
   config,
   pkgs,
+  user,
   ...
 }:
 {
-  home-manager.users.${config.user}.programs.nushell = {
+  home-manager.users.${user}.programs.nushell = {
     enable = true;
     # extraConfig = ''
-    #   source /home/${config.user}/.nixos/modules/programs/nushell/config.nu
+    #   source /home/${user}/.nixos/modules/programs/nushell/config.nu
     # '';
     configFile.source = ./nushell/config.nu;
     shellAliases = {
@@ -18,5 +19,5 @@
     '';
   };
 
-  users.users.${config.user}.shell = pkgs.nushell;
+  users.users.${user}.shell = pkgs.nushell;
 }

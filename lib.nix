@@ -1,7 +1,7 @@
-{ host, ... }:
 {
-  config,
+  host,
   lib,
+  user,
   ...
 }:
 {
@@ -16,10 +16,11 @@
       type = types.submodule;
     };
     hm = mkOption {
-      type = types.attrsOf types.anything;
+      type = types.str;
     };
   };
 
-  config.host = host;
-  config.user = "neeku";
+  # config.host = host;
+  # config.user = "neeku";
+  # config.hm = "home-manager.users.${user}";
 }

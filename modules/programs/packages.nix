@@ -3,10 +3,11 @@
   pkgs,
   inputs,
   config,
+  user,
   ...
 }:
 {
-  home-manager.users.${config.user} = {
+  home-manager.users.${user} = {
     # without home-manager options
     home.packages = with pkgs; [
       obsidian
