@@ -2,7 +2,6 @@
   inputs,
   pkgs,
   user,
-  config,
   ...
 }:
 let
@@ -19,14 +18,18 @@ in
     portalPackage = hyprlandPkgs.xdg-desktop-portal-hyprland;
   };
 
-  home-manager.users.${user} = {
+  home-manager.users.${user} = {config, ...}:{
     imports = [
       inputs.hyprland.homeManagerModules.default
     ];
     wayland.windowManager.hyprland = {
-      enable = true;
-      settings.source = toString ./hyprland/hyprland.conf;
+      # enable = true;
+      # settings.source = config.lib.file.mkOutOfStoreSymlink /home/neeku/.nixos/modules/programs/hyprland/hyprland.conf;
+
+      # settings.source = toString ./hyprland/hyprland.conf;
     };
+
+    home.file.".config/hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink /home/neeku/.nixos/modules/programs/hyprland/hyprland.conf;
 
     home.file.".config/hypr/xdph.conf".text = ''
       screencopy {

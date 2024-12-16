@@ -19,6 +19,7 @@ let
       "sddm"
       "sound"
       "system"
+      "fw-fanctrl"
     ];
 
     programs = [
@@ -36,6 +37,7 @@ let
       "packages"
       "vscode"
       "zathura"
+
     ];
   };
 
@@ -49,6 +51,8 @@ let
 in
 {
   imports = [
+    inputs.fw-fanctrl.nixosModules.default
+    inputs.nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware-configuration.nix
     ./home.nix
   ] ++ mapModulesByType modules;
@@ -57,13 +61,14 @@ in
 
   services = {
     fwupd.enable = true;
+    fwupd.extraRemotes = [ "lvfs-testing" ];
     gnome.gnome-keyring.enable = true;
     printing.enable = true;
     power-profiles-daemon.enable = true;
 
-    logind.extraConfig = ''
-      HandlePowerKey=suspend
-    '';
+    logind.powerKey = "suspend";
+    fprintd.enable = false;
+    upower.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

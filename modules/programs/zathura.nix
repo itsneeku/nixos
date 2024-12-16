@@ -94,11 +94,15 @@ in
     programs.zathura = {
       enable = true;
       options = {
-        guioptions = "none";
+        guioptions = "s";
         recolor-keephue = true;
         selection-clipboard = "clipboard";
         selection-notification = false;
         zoom-center = true;
+      };
+      mappings = {
+        "<Space>" = "navigate";
+        "<S-Space>" = "navigate previous";
       };
       extraConfig = catppuccin-mocha;
     };

@@ -9,9 +9,18 @@
 let
   cursor = "Bibata-Modern-Classic";
   cursorPackage = pkgs.bibata-cursors;
-  cursorSize = 32;
+  cursorSize = 20;
 in
 {
+  environment.sessionVariables = {
+    HYPRCURSOR_SIZE = cursorSize;
+    HYPRCURSOR_THEME = "HyprBibataModernClassicSVG";
+    QT_CURSOR_THEME = cursor;
+    QT_CURSOR_SIZE = cursorSize;
+    XCURSOR_THEME = cursor;
+    XCURSOR_SIZE = cursorSize;
+  };
+
   home-manager.users.${user} = {
     gtk.enable = true;
     home.packages = [ pkgs.font-manager ];
@@ -34,15 +43,6 @@ in
       package = cursorPackage;
       x11.enable = true;
       gtk.enable = true;
-    };
-
-    home.sessionVariables = {
-      HYPRCURSOR_SIZE = cursorSize;
-      HYPRCURSOR_THEME = "HyprBibataModernClassicSVG";
-      QT_CURSOR_THEME = cursor;
-      QT_CURSOR_SIZE = cursorSize;
-      XCURSOR_THEME = cursor;
-      XCURSOR_SIZE = cursorSize;
     };
 
     home.file.".local/share/icons/HyprBibataModernClassicSVG" = {

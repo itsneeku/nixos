@@ -4,6 +4,12 @@
   ...
 }:
 {
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    EDITOR = "code";
+    NIXPKGS_ALLOW_UNFREE = "1";
+  };
+
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
@@ -17,11 +23,7 @@
       home = {
         homeDirectory = "/home/${user}";
         username = user;
-        sessionVariables = {
-          NIXOS_OZONE_WL = "1";
-          EDITOR = "code";
-          NIXPKGS_ALLOW_UNFREE = "1";
-        };
+
         stateVersion = "24.05";
       };
 

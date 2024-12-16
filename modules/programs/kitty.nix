@@ -9,7 +9,7 @@
   home-manager.users.${user}.programs.kitty = {
     enable = true;
     font.name = "CaskaydiaCove Nerd Font";
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
 
     settings = {
       shell = "nu";

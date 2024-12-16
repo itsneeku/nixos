@@ -1,4 +1,4 @@
-{ config, user, ... }:
+{ user, ... }:
 {
   home-manager.users.${user} =
     {

@@ -50,6 +50,7 @@
       inputs.zen-browser.packages."${system}".specific
       eslint
       anytype
+      google-chrome
       # libreoffice-qt6
     ];
 
@@ -59,6 +60,7 @@
         "application/octet-stream" = [ "code.desktop" ];
         "text/plain" = [ "code.desktop" ];
         "application/zip" = [ "org.gnome.Nautilus.desktop" ];
+        "application/x-7z-compressed" = [ "org.gnome.Nautilus.desktop" ];
       };
     };
 
@@ -81,6 +83,9 @@
     programs.direnv = {
       enable = true;
       silent = true;
+      config = {
+        hide_env_diff = true;
+      };
       nix-direnv.enable = true;
       config.whitelist.prefix = [ "~/Documents/Code" ]; # Very Unsafe :)
     };

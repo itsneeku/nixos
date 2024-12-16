@@ -21,6 +21,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = _: true;
 
   environment.systemPackages = with pkgs; [
     nixd
