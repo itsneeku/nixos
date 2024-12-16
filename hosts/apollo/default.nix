@@ -68,7 +68,7 @@ in
 
     logind.powerKey = "suspend";
     fprintd.enable = false;
-    upower.enable = true;
+    # upower.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
