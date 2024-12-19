@@ -2,7 +2,6 @@
   outputs =
     inputs@{
       nixpkgs,
-      flake-utils,
       ...
     }:
     let
@@ -28,14 +27,15 @@
     };
 
   inputs = {
+    # System #
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    # Software #
     hyprland.url = "github:hyprwm/Hyprland";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     catppuccin.url = "github:catppuccin/nix";
