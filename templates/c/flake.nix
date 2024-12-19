@@ -1,20 +1,15 @@
 {
-  inputs.utils.url = "github:numtide/flake-utils";
+  inputs = {
+    utils.url = "github:numtide/flake-utils";
+    sugar.url = "github:itsneeku/flake-sugar";
+  };
+
   outputs =
-    {
-      self,
-      nixpkgs,
-      utils,
-    }:
-    utils.lib.eachDefaultSystem (
+    inputs@{ nixpkgs, ... }:
+    inputs.utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [
-            (final: prev: { })
-          ];
-        };
+        pkgs = import nixpkgs { inherit system; };
         buildDeps = with pkgs; [ ];
         runtimeDeps = with pkgs; [ ];
         devDeps =
@@ -27,34 +22,21 @@
             gdb
             valgrind
           ];
-        appName = "AppName";
+        name = "Example";
       in
       {
         devShells.default = pkgs.mkShell {
           packages = devDeps;
-
-          shellHook = ''
-            echo -e "Entering dev shell for $(basename "$(pwd)")...\n"
-
-            echo "Installed nix packages:"
-            for path in ${builtins.concatStringsSep " " devDeps}; do
-              pkg=$(basename "$path" | awk -F '-' '{print substr($0, index($0, $2))}')
-              echo -e "\t$pkg"
-            done
-          '';
+          shellHook = inputs.sugar.welcome devDeps;
         };
 
         packages.default = pkgs.stdenv.mkDerivation {
-          name = appName;
+          name = name;
           src = ./.;
           buildInputs = buildDeps;
           buildPhase = ''
-            gcc -o ${appName} -I./include ./src/*.c
+            gcc -o ${name} -I./include ./src/*.c
           '';
-          # installPhase = ''
-          #   mkdir -p $out/bin
-          #   cp ${appName} $out/bin/
-          # '';
         };
       }
     );

@@ -1,23 +1,24 @@
 {
-  description = "Deno development environment";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  inputs = {
+    utils.url = "github:numtide/flake-utils";
+    sugar.url = "github:itsneeku/flake-sugar";
+  };
+
   outputs =
-    { nixpkgs, ... }:
-    let
-      forEachSupportedSystem =
-        f:
-        nixpkgs.lib.genAttrs [
-          "x86_64-linux"
-          "aarch64-linux"
-          "x86_64-darwin"
-          "aarch64-darwin"
-        ] (system: f (import nixpkgs { inherit system; }));
-    in
-    {
-      devShells = forEachSupportedSystem (pkgs: {
-        default = pkgs.mkShell {
-          packages = with pkgs; [ deno ];
+    inputs@{ nixpkgs, ... }:
+    inputs.utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+        devDeps = with pkgs; [
+          deno
+        ];
+      in
+      {
+        devShells.default = pkgs.mkShell {
+          packages = devDeps;
+          shellHook = inputs.sugar.welcome devDeps;
         };
-      });
-    };
+      }
+    );
 }

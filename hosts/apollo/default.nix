@@ -51,6 +51,8 @@ let
 in
 {
   imports = [
+    inputs.catppuccin.nixosModules.catppuccin
+    inputs.home-manager.nixosModules.home-manager
     inputs.fw-fanctrl.nixosModules.default
     inputs.nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware-configuration.nix

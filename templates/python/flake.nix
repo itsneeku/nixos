@@ -10,15 +10,19 @@
       system:
       let
         pkgs = import nixpkgs { inherit system; };
+        pythonPackages = with pkgs.python3Packages; [
+          pip
+          venvShellHook
+        ];
         devDeps = with pkgs; [
-          pnpm
-          nodejs_latest
+          python3
         ];
       in
       {
         devShells.default = pkgs.mkShell {
           packages = devDeps;
-          shellHook = inputs.sugar.welcome devDeps;
+          shellHook = inputs.sugar.welcome (devDeps ++ pythonPackages);
+          venvDir = ".venv";
         };
       }
     );
