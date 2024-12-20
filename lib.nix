@@ -1,26 +1,16 @@
-{
-  host,
-  lib,
-  user,
-  ...
-}:
-{
-  options = with lib; {
-    host = mkOption {
-      type = types.str;
-    };
-    user = mkOption {
-      type = types.str;
-    };
-    createSymlink = mkOption {
-      type = types.submodule;
-    };
-    hm = mkOption {
-      type = types.str;
-    };
-  };
+{ lib, ... }:
 
-  # config.host = host;
-  # config.user = "neeku";
-  # config.hm = "home-manager.users.${user}";
+with lib;
+
+let
+  user = "neeku";
+in
+{
+  imports = [ (mkAliasOptionModule [ "hm" ] [ "home-manager" "users" user ]) ];
+
+  options.user = mkOption {
+    default = user;
+    readOnly = true;
+    type = types.str;
+  };
 }

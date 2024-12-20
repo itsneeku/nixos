@@ -1,54 +1,57 @@
 {
-  config,
   pkgs,
   inputs,
   lib,
+  user,
+  self,
   ...
 }:
 let
-  modules = {
-    system = [
+  modules = [
+      # Hardware / System
       "bluetooth"
-      "catppuccin"
       "dualboot"
-      "fonts"
+      "fw-fanctrl"
       "i2c"
       "mount"
       "network"
-      "nix-ld"
-      "sddm"
       "sound"
       "system"
-      "fw-fanctrl"
-    ];
-
-    programs = [
+      "touchpad"
       "hyprland"
-      "hypridle"
-      "hyprlock"
-      "nh"
-      "git"
       "swaync"
-      "waybar"
       "kitty"
-      "rofi/default"
-      "gtk"
+      "nh"
       "nushell"
-      "packages"
-      "vscode"
       "zathura"
+      "packages"
+      "rofi"
 
+      # Rice
+      "gtk"
+      "waybar"
+      "fonts"
+
+      # Programs
+      "sddm"
+      "dev"
     ];
-  };
 
-  mapModulesByType =
-    modules:
-    lib.flatten (
-      lib.mapAttrsToList (
-        type: modulesList: map (module: ../../modules + "/${type}/${module}.nix") modulesList
-      ) modules
-    );
+  getModulePath =
+    module:
+    let
+      basePath = ../../modules;
+    in
+    "${basePath}/${module}" + lib.optionalString (lib.pathIsRegularFile "${basePath}/${module}.nix") ".nix";
+
 in
+# mapModulesByType =
+#   modules:
+#   lib.flatten (
+#     lib.mapAttrsToList (
+#       type: modulesList: map (module: ../../modules + "/${type}/${module}.nix") modulesList
+#     ) modules
+#   );
 {
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
@@ -57,13 +60,12 @@ in
     inputs.nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware-configuration.nix
     ./home.nix
-  ] ++ mapModulesByType modules;
+  ] ++ (lib.map getModulePath modules);
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services = {
     fwupd.enable = true;
-    fwupd.extraRemotes = [ "lvfs-testing" ];
     gnome.gnome-keyring.enable = true;
     printing.enable = true;
     power-profiles-daemon.enable = true;
@@ -86,6 +88,9 @@ in
     enable = true;
     enable32Bit = true;
   };
+
+  boot.loader.grub.catppuccin.enable = true;
+  console.catppuccin.enable = true;
 
   system.stateVersion = "24.05";
 }

@@ -1,8 +1,4 @@
-{
-  inputs,
-  user,
-  ...
-}:
+{ inputs, user, ... }:
 {
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -13,17 +9,14 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
+
     backupFileExtension = "old";
 
-    extraSpecialArgs = {
-      inherit inputs;
-    };
-
+    extraSpecialArgs = { inherit inputs; };
     users.${user} = {
       home = {
         homeDirectory = "/home/${user}";
         username = user;
-
         stateVersion = "24.05";
       };
 
