@@ -49,14 +49,19 @@
       unityhub
       inputs.zen-browser.packages."${system}".specific
       eslint
-      anytype
-      google-chrome
+      # google-chrome
       # libreoffice-qt6
     ];
 
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
+        "text/html" = [ "zen.desktop" ];
+        "x-scheme-handler/http" = [ "zen.desktop" ];
+        "x-scheme-handler/https" = [ "zen.desktop" ];
+        "x-scheme-handler/about" = [ "zen.desktop" ];
+        "x-scheme-handler/unknown" = [ "zen.desktop" ];
+        "default-web-browser" = [ "zen.desktop" ];
         "application/octet-stream" = [ "code.desktop" ];
         "text/plain" = [ "code.desktop" ];
         "application/zip" = [ "org.gnome.Nautilus.desktop" ];

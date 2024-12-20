@@ -23,5 +23,6 @@
       enable = true;
       package = pkgs.vscode.fhs;
     };
+    programs.chromium.enable = true;
   };
 }
