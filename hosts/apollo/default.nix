@@ -8,41 +8,42 @@
 }:
 let
   modules = [
-      # Hardware / System
-      "bluetooth"
-      "dualboot"
-      "fw-fanctrl"
-      "i2c"
-      "mount"
-      "network"
-      "sound"
-      "system"
-      "touchpad"
-      "hyprland"
-      "swaync"
-      "kitty"
-      "nh"
-      "nushell"
-      "zathura"
-      "packages"
-      "rofi"
+    # Hardware / System
+    "bluetooth"
+    "dualboot"
+    "fw-fanctrl"
+    "i2c"
+    "mount"
+    "network"
+    "sound"
+    "system"
+    "touchpad"
+    "hyprland"
+    "swaync"
+    "kitty"
+    "nh"
+    "nushell"
+    "zathura"
+    "packages"
+    "rofi"
 
-      # Rice
-      "gtk"
-      "waybar"
-      "fonts"
+    # Rice
+    "gtk"
+    "waybar"
+    "fonts"
 
-      # Programs
-      "sddm"
-      "dev"
-    ];
+    # Programs
+    "sddm"
+    "dev"
+  ];
 
   getModulePath =
     module:
     let
       basePath = ../../modules;
     in
-    "${basePath}/${module}" + lib.optionalString (lib.pathIsRegularFile "${basePath}/${module}.nix") ".nix";
+    "${basePath}/${module}"
+    + lib.optionalString (lib.pathIsRegularFile "${basePath}/${module}.nix") ".nix";
 
 in
 # mapModulesByType =
