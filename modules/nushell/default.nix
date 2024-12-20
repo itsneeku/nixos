@@ -11,7 +11,9 @@
       # extraConfig = ''
       #   source /home/${user}/.nixos/modules/programs/nushell/config.nu
       # '';
+
       configFile.source = ./config.nu;
+
       shellAliases = {
         ls = "ls -la";
       };

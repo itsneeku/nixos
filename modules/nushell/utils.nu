@@ -7,10 +7,11 @@ export def make-editable [
 }
 
 export def "nix rebuild" [] {
-    nh os switch
-    if $env.LAST_EXIT_CODE != 0 {
-        notify-send -e 'NixOS Rebuild FAILED!' --icon=software-update-available
-        return 1
+    try {
+      nh os switch
+    } catch {
+      notify-send -e 'NixOS Rebuild FAILED!' --icon=software-update-available
+      return
     }
     notify-send -e 'NixOS Rebuild OK!' --icon=software-update-available
 }
