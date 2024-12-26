@@ -2,39 +2,35 @@
   pkgs,
   inputs,
   lib,
-  user,
-  self,
+  config,
   ...
 }:
 let
   modules = [
-    # Hardware / System
     "bluetooth"
     "dualboot"
-    "fw-fanctrl"
-    "i2c"
     "mount"
     "network"
     "sound"
     "system"
     "touchpad"
-    "hyprland"
-    "swaync"
-    "kitty"
-    "nh"
-    "nushell"
-    "zathura"
-    "packages"
-    "rofi"
+    "i2c"
 
-    # Rice
     "gtk"
     "waybar"
-    "fonts"
-
-    # Programs
     "sddm"
+    "hyprland"
+    "rofi"
+    "fonts"
+    "swaync"
+
     "dev"
+    "nushell"
+    "kitty"
+
+    "packages"
+    "fw-fanctrl"
+    "zathura"
   ];
 
   getModulePath =
@@ -44,21 +40,12 @@ let
     in
     "${basePath}/${module}"
     + lib.optionalString (lib.pathIsRegularFile "${basePath}/${module}.nix") ".nix";
-
 in
-# mapModulesByType =
-#   modules:
-#   lib.flatten (
-#     lib.mapAttrsToList (
-#       type: modulesList: map (module: ../../modules + "/${type}/${module}.nix") modulesList
-#     ) modules
-#   );
 {
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
     inputs.home-manager.nixosModules.home-manager
     inputs.fw-fanctrl.nixosModules.default
-    inputs.nixos-hardware.nixosModules.framework-13-7040-amd
     ./hardware-configuration.nix
     ./home.nix
   ] ++ (lib.map getModulePath modules);
@@ -90,8 +77,21 @@ in
     enable32Bit = true;
   };
 
+  hardware.amdgpu = {
+    opencl.enable = true;
+    amdvlk.enable = true;
+    initrd.enable = true;
+  };
+
   boot.loader.grub.catppuccin.enable = true;
   console.catppuccin.enable = true;
+
+  # Enables the zenpower sensor in lieu of the k10temp sensor on Zen CPUs https://git.exozy.me/a/zenpower3
+  # On Zen CPUs zenpower produces much more data entries
+
+  boot.blacklistedKernelModules = [ "k10temp" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.zenpower ];
+  boot.kernelModules = [ "zenpower" ];
 
   system.stateVersion = "24.05";
 }

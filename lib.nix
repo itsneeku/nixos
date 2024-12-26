@@ -1,10 +1,6 @@
-{ lib, ... }:
+{ lib, user, ... }:
 
 with lib;
-
-let
-  user = "neeku";
-in
 {
   imports = [ (mkAliasOptionModule [ "hm" ] [ "home-manager" "users" user ]) ];
 

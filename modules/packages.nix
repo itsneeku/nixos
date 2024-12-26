@@ -47,7 +47,7 @@
       bc
       appimage-run
       unityhub
-      inputs.zen-browser.packages."${system}".specific
+      inputs.zen-browser.packages."${system}".default
       eslint
       # google-chrome
       # libreoffice-qt6

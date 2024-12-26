@@ -1,10 +1,8 @@
 { inputs, pkgs, ... }:
 let
-  hyprlandPkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
+  hyprlandPkgs = inputs.hyprland.packages.${pkgs.system};
 in
 {
-  imports = [ inputs.hyprland.nixosModules.default ];
-
   programs.hyprland = {
     enable = true;
     package = hyprlandPkgs.hyprland;
@@ -14,31 +12,12 @@ in
   hm =
     { config, ... }:
     {
-      imports = [ inputs.hyprland.homeManagerModules.default ];
       wayland.windowManager.hyprland = {
         enable = true;
+        package = hyprlandPkgs.hyprland;
         settings.source = "${config.home.homeDirectory}/.nixos/modules/hyprland/hyprland.conf";
+        systemd.variables = [ "--all" ];
       };
-
-      # xdg.configFile."hypr/hyprland.conf".source =
-      #   config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixos/modules/programs/hypr/hyprland.conf";
-
-      # xdg.configFile."hypr" = {
-      #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.nixos/modules/programs/hypr/";
-      # };
-
-      # home.file.".config/hypr/hyprland.conf".source =
-      #   config.lib.file.mkOutOfStoreSymlink /home/neeku/.nixos/modules/programs/hyprland/hyprland.conf;
-
-      # home.file.".config/hypr/hyprland.conf".source =
-      #   config.lib.file.mkOutOfStoreSymlink ./. + "/hyprland/hyprland.conf";
-
-      # home.file.".config/hypr/xdph.conf".text = ''
-      #   screencopy {
-      #     max_fps = 60
-      #     allow_token_by_default = true
-      #   }
-      # '';
 
       programs.hyprlock = {
         enable = true;
