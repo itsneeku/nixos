@@ -1,8 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 {
   fonts = {
     enableDefaultPackages = true;
@@ -13,6 +9,9 @@
 
       # Nerd Fonts
       nerd-fonts.caskaydia-cove
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
+      nerd-fonts.sauce-code-pro
       inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd
       inputs.apple-fonts.packages.${pkgs.system}.ny-nerd
 

@@ -19,8 +19,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    (where-is-my-sddm-theme.override {
-      variants = [ "qt5" ];
-    })
+    (where-is-my-sddm-theme.override { variants = [ "qt5" ]; })
   ];
 }

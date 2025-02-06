@@ -36,97 +36,61 @@
 @define-color rosewater #f5e0dc;
 
 * {
-  font-family: "Inter";
+  font-family: monospace;
   font-size: 1em;
 }
 
-#waybar.main {
-  background: rgba(30, 30, 46, 0);
-  margin: 0 10px;
-  /* padding-bottom: 0px; */
-  /* border-radius: 20px 20px 0px 0px;
-  box-shadow: 0px 0px 0px 20px rgba(0, 0, 0, 1); */
-    color: @text;
-  /* text shadodw */
+.main {
+  background: transparent;
+  color: @text;
   text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
   font-weight: bold;
 }
-#waybar.bottomBorders {
-  background: rgba(30, 30, 46, 0);
-  border-radius: 0px 0px 20px 20px;
-  box-shadow: 0px 0px 0px 20px rgba(0, 0, 0, 1);
-}
-
-#waybar.topBorders {
-  background: rgba(30, 30, 46, 0);
-
-  border-radius: 20px 20px 0px 0px;
-  box-shadow: 0px 0px 0px 20px rgba(0, 0, 0, 1);
-}
-
-#workspaces,
-#cpu,
-#temperature,
-#memory,
-#tray,
-#bluetooth,
-#network,
-#pulseaudio,
-#backlight,
-#battery,
-#clock {
-  padding: 0px 0px;
-  margin: 0px 10px;
-}
-
-#cpu {
-  margin-left: 20px;
-}
 
 #workspaces button {
-  color: rgba(255, 255, 255, 0.25);
-  padding: 5px;
-  border-radius: 100;
-  border-width: 0;
+  color: rgba(218, 218, 218, 0.25);
+  padding: 0.5em;
+  border-width: 0px;
   border: none;
+  transition: color;
+  transition-duration: 0.5s;
 }
 
 #workspaces button:hover {
   color: @text;
-  box-shadow: inherit;
-  text-shadow: inherit;
+  box-shadow: none;
+  text-shadow: none;
+  background: none;
 }
 
 #workspaces button.active {
   color: @text;
 }
 
-#tray {
-  margin: 5px 5px 5px 5px;
-  border-radius: 16px;
-  padding: 0px 5px;
-  /*border-right: solid 1px #282738;*/
+#workspaces button:first-child {
+  padding-left: 1.5em;
 }
 
-#bluetooth.off {
-  color: @off;
+#clock {
+  font-family: monospace;
+  padding-right: 2em;
+  padding-left: 0.75em;
 }
 
-#network {
+.modules-right widget label,
+.modules-right widget image {
+  min-width: 1.5em;
+  padding: 0px 0.5em;
 }
 
-#pulseaudio {
+tooltip label {
+  font-family: 'SFProDisplay Nerd Font';
 }
 
+#bluetooth.disabled,
+#bluetooth.off,
 #pulseaudio.muted {
-  background: transparent;
   color: @off;
-}
-
-#backlight {
-}
-
-#battery {
 }
 
 #battery.charging {
@@ -138,9 +102,7 @@
   color: @red;
 }
 
-#clock {
-  color: @text;
-  /* background-color: #282828; */
-  margin-right: 20px;
-  /*border-left: solid 1px #282738;*/
+#tray {
+  opacity: 1;
 }
+

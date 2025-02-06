@@ -2,13 +2,18 @@
 {
   services.libinput = {
     enable = true;
+    /**
+      More settings defined in hyprland:input as they take priority
+    */
+    touchpad = {
+      disableWhileTyping = false;
+    };
     # touchpad = {
-    #   enable = true;
-    #   naturalScrolling = true;
-    #   tapToClick = true;
-    #   disableWhileTyping = false;
     #   clickMethod = "clickfinger";
+    # };
 
+    # mouse = {
+    #   accelProfile = "flat";
     # };
   };
 }

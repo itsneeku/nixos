@@ -22,11 +22,20 @@ in
     XCURSOR_SIZE = cursorSize;
   };
 
+  catppuccin = {
+    flavor = "mocha";
+    tty.enable = true;
+    grub.enable = true;
+  };
+
   home-manager.users.${user} =
     { config, ... }:
     {
       gtk.enable = true;
-      home.packages = [ pkgs.font-manager ];
+      home.packages = with pkgs; [
+        font-manager
+        adw-gtk3
+      ];
 
       # Font
       gtk.font = {
@@ -34,10 +43,31 @@ in
         package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;
       };
 
+      dconf.settings."org.gnome.desktop.interface" = {
+        color-scheme = "prefer-dark";
+      };
       # Theme
       imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
-      catppuccin.flavor = "mocha";
-      gtk.catppuccin.enable = true;
+
+      gtk.theme = {
+        name = "adw-gtk3-dark";
+        package = pkgs.adw-gtk3;
+      };
+
+      # gtk.gtk3.extraConfig = {
+      #   gtk-theme-name = "adw-gtk3-dark";
+      # };
+
+      gtk.iconTheme = {
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
+      };
+
+      catppuccin = {
+        gtk.enable = false;
+        btop.enable = false;
+        bat.enable = false;
+      };
 
       # Cursor
       home.pointerCursor = {

@@ -9,10 +9,16 @@
 
     # Software #
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     catppuccin.url = "github:catppuccin/nix";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     fw-fanctrl.url = "github:TamtamHero/fw-fanctrl/packaging/nix";
+    ags.url = "github:aylur/ags";
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs =

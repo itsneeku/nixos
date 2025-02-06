@@ -6,7 +6,7 @@ export def make-editable [
     rsync -avz --copy-links --chmod=D2755,F744 $"($tmpdir)/" $path
 }
 
-export def "nix rebuild" [] {
+export def "nixos rebuild" [] {
     try {
       nh os switch
     } catch {
@@ -16,14 +16,14 @@ export def "nix rebuild" [] {
     notify-send -e 'NixOS Rebuild OK!' --icon=software-update-available
 }
 
-export def "nix upgrade" [] {
+export def "nixos upgrade" [] {
     enter $env.FLAKE
     nix flake update
     if $env.LAST_EXIT_CODE != 0 {
         notify-send -e 'NixOS Upgrade FAILED!' --icon=software-update-available
         return 1
     }
-    nix rebuild
+    nixos rebuild
     dexit
 }
 

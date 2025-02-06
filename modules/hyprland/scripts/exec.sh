@@ -32,7 +32,7 @@ enableMonitor() {
   # Get monitor config
   local sourceConfigKey=$(searchSource "$monitorDesc" | sed 's/Desc/Config/' | awk -F ' = ' '{print $1}')
   local sourceConfig=$(searchSource "$sourceConfigKey" | awk -F ' = ' '{print $2}')
-
+  
   hyprctl keyword monitor "$monitorPort, $sourceConfig"
 }
 

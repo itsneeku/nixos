@@ -3,8 +3,11 @@ let
   hyprlandPkgs = inputs.hyprland.packages.${pkgs.system};
 in
 {
+  imports = [ ./hyprland.nix ];
+
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     package = hyprlandPkgs.hyprland;
     portalPackage = hyprlandPkgs.xdg-desktop-portal-hyprland;
   };
@@ -12,11 +15,20 @@ in
   hm =
     { config, ... }:
     {
+      imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
+      # programs.hyprpanel = {
+      #   enable = true;
+      #   systemd.enable = true;
+      #   hyprland.enable = true;
+      #   overwrite.enable = true;
+      # };
+
       wayland.windowManager.hyprland = {
         enable = true;
         package = hyprlandPkgs.hyprland;
-        settings.source = "${config.home.homeDirectory}/.nixos/modules/hyprland/hyprland.conf";
-        systemd.variables = [ "--all" ];
+        # settings.source = "${config.home.homeDirectory}/.nixos/modules/hyprland/hyprland.conf";
+        # systemd.variables = [ "--all" ];
+        systemd.enable = false;
       };
 
       programs.hyprlock = {

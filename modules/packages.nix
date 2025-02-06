@@ -7,9 +7,20 @@
   ...
 }:
 {
+  hardware.keyboard.qmk.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+
+  services.upower.enable = true;
+
   home-manager.users.${user} = {
     # without home-manager options
     home.packages = with pkgs; [
+      qmk
       obsidian
       (spotify.overrideAttrs (oldAttrs: {
         postInstall = ''sed -i "s|^Exec=.*|& --enable-features=UseOzonePlatform --ozone-platform=wayland|" "$out/share/applications/spotify.desktop"'';
@@ -19,6 +30,7 @@
       vim
       bat
       vesktop
+      killall
       eza
       waypaper
       swaybg
@@ -46,9 +58,10 @@
       ffmpeg-full
       bc
       appimage-run
-      unityhub
       inputs.zen-browser.packages."${system}".default
       eslint
+      zed-editor
+
       # google-chrome
       # libreoffice-qt6
     ];
@@ -77,12 +90,7 @@
       ];
     };
 
-    programs.bat = {
-      enable = true;
-      catppuccin.enable = true;
-      catppuccin.flavor = "mocha";
-    };
-
+    programs.bat.enable = true;
     programs.zoxide.enable = true;
     programs.yazi.enable = true;
     programs.direnv = {
@@ -96,8 +104,6 @@
     };
     programs.btop = {
       enable = true;
-      catppuccin.enable = true;
-      catppuccin.flavor = "mocha";
       package = pkgs.btop.override {
         rocmSupport = true; # Add rocm_smi_lib for AMD GPU monitoring
       };
