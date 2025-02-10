@@ -28,14 +28,18 @@
           }
           {
             temp = 75;
-            speed = 50;
+            speed = 40;
           }
           {
             temp = 85;
-            speed = 50;
+            speed = 40;
           }
           {
             temp = 95;
+            speed = 50;
+          }
+          {
+            temp = 100;
             speed = 100;
           }
         ];

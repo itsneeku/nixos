@@ -95,8 +95,8 @@ in
 
         while true; do
           # read the current state
-          if [[ $(cat "$BAT_STATUS") == "Discharging" ]]; then
-            if [[ $(cat "$BAT_CAP") -gt $LOW_BAT_PERCENT ]]; then
+          if [[ $(${pkgs.coreutils}/bin/cat "$BAT_STATUS") == "Discharging" ]]; then
+            if [[ $(${pkgs.coreutils}/bin/cat "$BAT_CAP") -gt $LOW_BAT_PERCENT ]]; then
               profile=$BAT_PROFILE
             else
               profile=$LOW_BAT_PROFILE

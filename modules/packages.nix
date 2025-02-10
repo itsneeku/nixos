@@ -27,13 +27,15 @@
       }))
       libgcc
       spicetify-cli
-      vim
+      wlogout
       bat
       vesktop
       killall
       eza
       waypaper
       swaybg
+      # texlive.combined.scheme-basic
+      texliveFull
       libnotify
       nautilus
       gnome-settings-daemon
@@ -59,7 +61,7 @@
       bc
       appimage-run
       inputs.zen-browser.packages."${system}".default
-      eslint
+      # eslint
       zed-editor
 
       # google-chrome
