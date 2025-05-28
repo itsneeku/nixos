@@ -27,7 +27,6 @@ in
         enable = true;
         package = hyprlandPkgs.hyprland;
         # settings.source = "${config.home.homeDirectory}/.nixos/modules/hyprland/hyprland.conf";
-        # systemd.variables = [ "--all" ];
         systemd.enable = false;
       };
 

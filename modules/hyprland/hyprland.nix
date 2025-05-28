@@ -99,7 +99,7 @@ in
         "${mod}, R, exec, killall rofi; rofi -show drun"
         "${mod}, M, exec, killall .waybar-wrapped; waybar"
         "${mod}, F, fullscreen"
-        "${mod}, Esc, exec, wlogout"
+        "${mod}, ESCAPE, exec, wlogout"
         "ALT, TAB, togglespecialworkspace"
         "ALT SHIFT, TAB, movetoworkspacesilent, special"
       ]

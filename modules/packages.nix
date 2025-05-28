@@ -28,6 +28,8 @@
       libgcc
       spicetify-cli
       wlogout
+      vivaldi
+      vivaldi-ffmpeg-codecs
       bat
       vesktop
       killall
