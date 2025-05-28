@@ -161,7 +161,9 @@ in
       accel_profile = "flat";
       touchpad = {
         disable_while_typing = false;
+        scroll_factor = 0.3;
       };
+      kb_options = [ "ctrl:nocaps" ];
       # emulate_discrete_scroll = 0;
     };
 

@@ -36,73 +36,76 @@
 @define-color rosewater #f5e0dc;
 
 * {
-  font-family: monospace;
-  font-size: 1em;
+	font-family: monospace;
+	font-size: 1em;
 }
 
 .main {
-  background: transparent;
-  color: @text;
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
-  font-weight: bold;
+	background: transparent;
+	color: @text;
+	text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+	font-weight: bold;
 }
 
 #workspaces button {
-  color: rgba(218, 218, 218, 0.25);
-  padding: 0.5em;
-  border-width: 0px;
-  border: none;
-  transition: color;
-  transition-duration: 0.5s;
+	color: rgba(218, 218, 218, 0.25);
+	padding: 0.5em;
+	border-width: 0px;
+	border: none;
+	transition: color;
+	transition-duration: 0.5s;
 }
 
 #workspaces button:hover {
-  color: @text;
-  box-shadow: none;
-  text-shadow: none;
-  background: none;
+	color: @text;
+	box-shadow: none;
+	text-shadow: none;
+	background: none;
 }
 
 #workspaces button.active {
-  color: @text;
+	color: @text;
 }
 
 #workspaces button:first-child {
-  padding-left: 1.5em;
+	padding-left: 1.5em;
 }
 
 #clock {
-  font-family: monospace;
-  padding-right: 2em;
-  padding-left: 0.75em;
+	font-family: monospace;
+	padding-right: 2em;
+	padding-left: 0.75em;
 }
 
 .modules-right widget label,
 .modules-right widget image {
-  min-width: 1.5em;
-  padding: 0px 0.5em;
+	min-width: 1.5em;
+	padding: 0px 0.5em;
 }
 
 tooltip label {
-  font-family: 'SFProDisplay Nerd Font';
+	font-family: 'SFProDisplay Nerd Font';
 }
 
 #bluetooth.disabled,
 #bluetooth.off,
 #pulseaudio.muted {
-  color: @off;
+	color: @off;
+}
+
+#battery {
+	padding-left: 0.75em;
 }
 
 #battery.charging {
-  color: @green;
+	color: @green;
 }
 
 #battery.warning:not(.charging),
 #battery.critical:not(.charging) {
-  color: @red;
+	color: @red;
 }
 
 #tray {
-  opacity: 1;
+	opacity: 1;
 }
-

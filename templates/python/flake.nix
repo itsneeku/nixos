@@ -14,14 +14,12 @@
           pip
           venvShellHook
         ];
-        devDeps = with pkgs; [
-          python3
-        ];
+        devDeps = with pkgs; [ python3 ];
       in
       {
         devShells.default = pkgs.mkShell {
-          packages = devDeps;
-          shellHook = inputs.sugar.welcome (devDeps ++ pythonPackages);
+          packages = devDeps ++ pythonPackages;
+          # shellHook = inputs.sugar.welcome (devDeps ++ pythonPackages);
           venvDir = ".venv";
         };
       }

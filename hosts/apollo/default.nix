@@ -8,6 +8,7 @@
 }:
 let
   modules = [
+    "power-laptop"
     "bluetooth"
     "dualboot"
     "mount"
@@ -79,7 +80,6 @@ in
     amf # AMD AMF encoder
   ];
 
-  hardware.sensor.iio.enable = true; # Allow DEs to manage display brightness
   security.polkit.enable = true;
 
   hardware.graphics = {

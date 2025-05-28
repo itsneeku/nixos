@@ -17,7 +17,7 @@ export def "nixos rebuild" [] {
 }
 
 export def "nixos upgrade" [] {
-    enter $env.FLAKE
+    enter $env.NH_FLAKE
     nix flake update
     if $env.LAST_EXIT_CODE != 0 {
         notify-send -e 'NixOS Upgrade FAILED!' --icon=software-update-available

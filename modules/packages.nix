@@ -17,6 +17,11 @@
 
   services.upower.enable = true;
 
+  programs.adb.enable = true;
+  virtualisation.waydroid.enable = true;
+
+  users.users.${user}.extraGroups = [ "adbusers" ];
+
   home-manager.users.${user} = {
     # without home-manager options
     home.packages = with pkgs; [
@@ -65,7 +70,9 @@
       inputs.zen-browser.packages."${system}".default
       # eslint
       zed-editor
-
+      code-cursor
+      android-tools
+      qtscrcpy
       # google-chrome
       # libreoffice-qt6
     ];
